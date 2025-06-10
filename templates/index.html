@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Customer Churn Prediction</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .topic h1 {
+            font-size: 45px;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        .submitbutton {
+            text-align: center;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result-card {
+            background-color: #f1f3f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+        }
+        .result-card h3 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .result-card h2 {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .result-card.fail h2 {
+            color: #E94F37;
+        }
+        .icon {
+            font-size: 3rem;
+            margin-top: 10px;
+        }
+        .success-icon {
+            color: #4CAF50;
+        }
+        .fail-icon {
+            color: #E94F37;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <div class="topic">
+            <h1>Customer Churn Prediction</h1>
+        </div>
+        <div class="form">
+            <form action="/" method="POST">
+                <div>
+                    <label for="Geography">Geography</label>
+                    <select name="Geography" required>
+                        <option value="France">France</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Spain">Spain</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Credit_score">Credit Score</label>
+                    <input type="number" name="Credit_score" required>
+                </div>
+                <div>
+                    <label for="Gender">Gender</label>
+                    <select name="Gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Age">Age</label>
+                    <input type="number" name="Age" required>
+                </div>
+                <div>
+                    <label for="Tenure">Tenure</label>
+                    <input type="number" name="Tenure" required>
+                </div>
+                <div>
+                    <label for="Balance">Balance</label>
+                    <input type="number" name="Balance" required>
+                </div>
+                <div>
+                    <label for="Num_of_products">Number of Products</label>
+                    <input type="number" name="Num_of_products" required>
+                </div>
+                <div>
+                    <label for="Credit_card">Does Customer have a credit card?</label>
+                    <select name="Credit_card" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Active_member">Is Customer an active member?</label>
+                    <select name="Active_member" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Estimated_salary">Estimated Salary</label>
+                    <input type="number" name="Estimated_salary" required>
+                </div>
+
+                <div class="submitbutton">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+
+            {% if predicted_text %}
+            <div class="result-card {% if prediction == 1 %}fail{% else %}success{% endif %}">
+                <h2>{{ predicted_text }}</h2>
+                <div class="icon {% if prediction == 1 %}fail-icon{% else %}success-icon{% endif %}">
+                    {% if prediction == 1 %}
+                        &#128530; <!-- Sad face -->
+                    {% else %}
+                        &#128578; <!-- Smiley face -->
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
