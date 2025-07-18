@@ -12,8 +12,8 @@ def onehotencoding(Geography):
 
 
 def prediction(list):
-    model = tf.keras.models.load_model("model\model.h5")
-    with open ('model\scaler.pkl','rb') as f:
+    model = tf.keras.models.load_model("model/model.h5")
+    with open ('model/scaler.pkl','rb') as f:
         sc = pickle.load(f)
         
     transformed_list = sc.transform([list])
